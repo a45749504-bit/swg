@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: wstunnel-proxy
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    envVars:
+      - key: WSTUNNEL_PATH
+        sync: false
