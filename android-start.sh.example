@@ -1,0 +1,14 @@
+#!/data/data/com.termux/files/usr/bin/bash
+set -eu
+
+WSTUNNEL_BIN="$HOME/bin/wstunnel"
+WSTUNNEL_PATH='REPLACE_WITH_RENDER_SECRET'
+RENDER_HOST='wstunnel-proxy-xxxx.onrender.com'
+LOCAL_SOCKS_PORT='10808'
+
+exec "$WSTUNNEL_BIN" client \
+  -L "socks5://127.0.0.1:${LOCAL_SOCKS_PORT}" \
+  -P "$WSTUNNEL_PATH" \
+  --tls-verify-certificate \
+  --websocket-ping-frequency 30s \
+  "wss://${RENDER_HOST}"
